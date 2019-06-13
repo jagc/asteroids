@@ -41,3 +41,7 @@ func _movementMechanics(delta):
 	
 	position.x = wrapf(position.x, -screen_buffer, screen_size.x + screen_buffer)
 	position.y = wrapf(position.y, -screen_buffer, screen_size.y + screen_buffer)
+	
+func _shoot():
+	if Input.is_action_just_pressed("shoot"):
+		pass
