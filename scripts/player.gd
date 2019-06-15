@@ -1,5 +1,7 @@
 extends Area2D
 
+export(PackedScene) var projectile
+
 const TURN_SPEED = 180
 
 const MOVE_SPEED = 150
@@ -17,6 +19,7 @@ func _ready():
 
 func _process(delta):
 	_movementMechanics(delta)
+	_shoot(delta)
 	
 func _movementMechanics(delta):
 	if Input.is_action_pressed("ui_left"):
@@ -42,6 +45,9 @@ func _movementMechanics(delta):
 	position.x = wrapf(position.x, -screen_buffer, screen_size.x + screen_buffer)
 	position.y = wrapf(position.y, -screen_buffer, screen_size.y + screen_buffer)
 	
-func _shoot():
+func _shoot(delta):
+	var projectileSpeed = 400
 	if Input.is_action_just_pressed("shoot"):
-		pass
+		var newProjectile = projectile.instance()
+		get_parent().add_child(newProjectile)
+		newProjectile.start($muzzle.global_position, rotation)
