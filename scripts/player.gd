@@ -46,7 +46,6 @@ func _movementMechanics(delta):
 	position.y = wrapf(position.y, -screen_buffer, screen_size.y + screen_buffer)
 	
 func _shoot(delta):
-	var projectileSpeed = 400
 	if Input.is_action_just_pressed("shoot"):
 		var newProjectile = projectile.instance()
 		get_parent().add_child(newProjectile)
